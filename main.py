@@ -5,6 +5,10 @@ from dialogic.storage.message_logging import MongoMessageLogger
 from dm import make_dm
 import scenarios  # noqa
 
+import logging
+logging.basicConfig(level=logging.DEBUG)
+
+
 dm = make_dm()
 connector = DialogConnector(
     dialog_manager=dm,

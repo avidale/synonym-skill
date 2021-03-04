@@ -6,14 +6,12 @@ from scenarios.synonym_finder import make_synonym_response
 
 
 def is_single_pass(turn: DialogTurn):
+    """ Check that a command is passed when the skill is activated """
     if not turn.ctx.yandex:
         return False
     if not turn.ctx.yandex.session.new:
         return False
-    req = turn.ctx.yandex.request
-    if not req.command:
-        return False
-    return len(req.command) < len(req.original_utterance) + 15
+    return bool(turn.ctx.yandex.request.command)
 
 
 def is_new_session(turn: DialogTurn):
@@ -22,7 +20,7 @@ def is_new_session(turn: DialogTurn):
 
 @csc.add_handler(priority=100, checker=is_single_pass)
 def single_pass(turn: DialogTurn):
-    turn.response_text = make_synonym_response(turn)
+    make_synonym_response(turn)
     turn.commands.append(COMMANDS.EXIT)
 
 
