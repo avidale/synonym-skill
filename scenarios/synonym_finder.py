@@ -8,7 +8,7 @@ def find_synonyms(word):
     word = fast_normalize(word, lemmatize=True)
     text = word.replace(' ', '%20')
     resp = requests.get(f'https://www.ruwordnet.ru/ru/search/{text}')
-    soup = BeautifulSoup(resp.text, 'lxml')
+    soup = BeautifulSoup(resp.text, 'html.parser')
     synsets = soup.find_all('div', {'class': 'synonyms'})
     texts = [
         [
