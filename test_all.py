@@ -1,4 +1,4 @@
-from tgalice.testing.testing_utils import make_context
+from dialogic.testing.testing_utils import make_context
 
 from dm import make_dm
 import scenarios  # noqa
