@@ -70,3 +70,14 @@ def what_word(turn: DialogTurn):
 def synonyms_ellipsis(turn: DialogTurn):
     word = turn.user_object.get('word')
     make_synonym_response(turn, word=word)
+
+
+@csc.add_handler(priority=10, intents=['repeat'])
+def repeat(turn: DialogTurn):
+    prev = turn.user_object.get('prev')
+    if not prev:
+        turn.response_text = 'Не поняла, что повторять'
+    else:
+        turn.response_text = f"<text>{prev['text']}</text><voice>{prev['voice']}</voice>"
+        turn.suggests = prev['suggests']
+        turn.next_stage = prev['stage']

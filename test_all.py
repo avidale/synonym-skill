@@ -13,3 +13,7 @@ def test_dm():
     assert 'выход' in resp.suggests
     assert 'Привет' in resp.text
     assert 'Синоним' in resp.text
+
+    c2 = make_context(prev_response=resp, text='собака')
+    r2 = manager.respond(c2)
+    assert 'собака' in r2.text

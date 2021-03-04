@@ -5,3 +5,4 @@ pymongo
 mongomock
 requests
 bs4
+compress_fasttext

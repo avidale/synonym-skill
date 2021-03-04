@@ -41,3 +41,10 @@ what_word:
 
 synonyms_ellipsis:
   regexp: 'какие у него синонимы'
+
+repeat:
+  examples:
+    - повтори
+    - что ты сказала
+    - еще раз
+    - ась
