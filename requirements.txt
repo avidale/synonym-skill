@@ -1,0 +1,6 @@
+attrs
+dialogic
+dnspython
+pymongo
+requests
+bs4
