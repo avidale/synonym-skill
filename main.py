@@ -13,6 +13,7 @@ dm = make_dm()
 connector = DialogConnector(
     dialog_manager=dm,
     log_storage=MongoMessageLogger(),  # requires MONGODB_URI env variable
+    alice_native_state='session',  # use built-in session state in Alice
 )
 server = FlaskServer(connector=connector)
 
