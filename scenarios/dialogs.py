@@ -5,7 +5,7 @@ from dm import csc
 from scenarios.synonym_finder import make_synonym_response
 
 
-def is_single_pass(turn: DialogTurn):
+def is_single_pass(turn: DialogTurn) -> bool:
     """ Check that a command is passed when the skill is activated """
     if not turn.ctx.yandex:
         return False
@@ -54,3 +54,19 @@ def find_synonym_fallback(turn: DialogTurn):
     if not turn.text:
         return
     make_synonym_response(turn)
+
+
+@csc.add_handler(priority=10, intents=['what_word'])
+def what_word(turn: DialogTurn):
+    word = turn.user_object.get('word')
+    if word:
+        turn.response_text = f'Вы говорили о слове {word}'
+        turn.next_stage = 'word'
+    else:
+        turn.response_text = 'Вы ещё не искали синонимы'
+
+
+@csc.add_handler(priority=20, intents=['synonyms_ellipsis'], stages=['word'])
+def synonyms_ellipsis(turn: DialogTurn):
+    word = turn.user_object.get('word')
+    make_synonym_response(turn, word=word)

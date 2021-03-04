@@ -37,3 +37,5 @@ def make_synonym_response(turn: DialogTurn, word=None):
     for syn in all_synonyms[:-1]:
         turn.response_text += '\n' + syn + ';'
     turn.response_text += '\n' + all_synonyms[-1] + '.'
+
+    turn.user_object['word'] = word
