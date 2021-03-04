@@ -27,7 +27,8 @@ def make_synonym_response(turn: DialogTurn, word=None):
         return
     syns = find_synonyms(word)
     all_synonyms = sorted({
-        text for ss in syns for text in ss if text.upper() != word.upper()
+        text for ss in syns for text in ss
+        if word.upper() not in text.upper().split()
     })
     if not all_synonyms:
         turn.response_text = f'Простите, не нашла синонимов к слову "{word}".'

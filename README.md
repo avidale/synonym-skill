@@ -34,3 +34,7 @@ python main.py --ngrok
    и сохранить его в [секрет](https://docs.github.com/en/actions/reference/encrypted-secrets)
    репозитория с названием `TOKEN`
 1. В секрет с названием `FUNCTION_ID` скопировать id облачной функции
+1. Если вы сохраняете логи в MongoDB, в секрет `MONGODB_URI` надо скопировать
+    строку подключения к базе данных. 
+   Если нет, надо закомментировать строку про `MONGODB_URI` в файле
+   `.github/workflows/test_and_deploy.yaml`
