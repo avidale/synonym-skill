@@ -8,6 +8,7 @@ dm = make_dm()
 connector = DialogConnector(dialog_manager=dm)
 server = FlaskServer(connector=connector)
 
+handler = connector.serverless_alice_handler
 
 if __name__ == '__main__':
     server.parse_args_and_run()
